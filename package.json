@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "MERN e-commerce shopping application",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node backend/server.js",
     "server": "nodemon backend/server",
@@ -20,7 +21,10 @@
   },
   "homepage": "https://github.com/EuJin03/my-warehouse-ecommerce#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.8"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

@@ -7,3 +7,4 @@ notes
 5. npm i -D nodemon concurrently // -D flag is install as devDependencies
 6. package.json -> start script add "server": "nodemon backend/server", "client": "npm start --prefix frontend". nodemon -> run the server, client -> fetch the client in the frontend with "--prefix"
 7. concurrently allows scripts to run simultaneously
+8. include "type": "module" in package.json to runs es6 modules in node
