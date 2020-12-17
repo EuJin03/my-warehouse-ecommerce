@@ -62,7 +62,7 @@ const products = [
     price: 49.99,
     countInStock: 7,
     rating: 3.5,
-    numReviews: 10,
+    numReviews: 9,
   },
   {
     _id: "6",
@@ -79,4 +79,4 @@ const products = [
   },
 ];
 
-export default products;
+module.exports = products;
