@@ -11,6 +11,8 @@ router.get(
   asyncHandler(async (req, res) => {
     const products = await Product.find({});
 
+    // res.status(401);
+    // throw new Error("Not Authorised");
     res.json(products);
     // try catch method will need to do everytime so use a package (express-asymc-handler) instead
   })
@@ -27,7 +29,7 @@ router.get(
     if (product) {
       res.json(product);
     } else {
-      res.status(404); // optional
+      console.log(res.status); // optional
       throw new Error("Product not found");
     }
   })

@@ -8,3 +8,16 @@ notes
 6. package.json -> start script add "server": "nodemon backend/server", "client": "npm start --prefix frontend". nodemon -> run the server, client -> fetch the client in the frontend with "--prefix"
 7. concurrently allows scripts to run simultaneously
 8. include "type": "module" in package.json to runs es6 modules in node
+9. data:import / data:destroy from seeder to import data from db
+10. middleware to create custom error handler
+
+Redux Pattern (similar to React Hook library, redux is not a part of React)
+server -->
+Actions --> Reducer --> components --> Actions (cycle)
+
+two types of state
+
+1. component level state
+2. global state
+
+3. frontend -> npm i redux (state manager) react-redux redux-thunk (make async req) redux-devtools-extension
