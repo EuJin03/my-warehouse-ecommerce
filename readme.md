@@ -17,7 +17,8 @@ Actions --> Reducer --> components --> Actions (cycle)
 
 two types of state
 
-1. component level state
-2. global state
+i. component level state
+ii. global state
 
-3. frontend -> npm i redux (state manager) react-redux redux-thunk (make async req) redux-devtools-extension
+11. frontend -> npm i redux (state manager) react-redux redux-thunk (make async req) redux-devtools-extension
+12. create store -> put const -> reducer -> action
