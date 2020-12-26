@@ -12,6 +12,12 @@ import {
   ORDER_LIST_USER_REQUEST,
   ORDER_LIST_USER_SUCCESS,
   ORDER_LIST_USER_FAIL,
+  ORDER_LIST_ADMIN_REQUEST,
+  ORDER_LIST_ADMIN_SUCCESS,
+  ORDER_LIST_ADMIN_FAIL,
+  ORDER_DELIVER_SUCCESS,
+  ORDER_DELIVER_REQUEST,
+  ORDER_DELIVER_FAIL,
 } from "../constants/orderConstants";
 
 export const createOrder = order => async (dispatch, getState) => {
@@ -148,6 +154,77 @@ export const ListUserOrders = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: ORDER_LIST_USER_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const listAdminOrders = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ORDER_LIST_ADMIN_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        // "Content-Type": "application/json", POST req only need
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/api/orders`, config);
+
+    dispatch({
+      type: ORDER_LIST_ADMIN_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ORDER_LIST_ADMIN_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const deliverOrder = order => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: ORDER_DELIVER_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.put(
+      `/api/orders/${order._id}/deliver`,
+      {},
+      config
+    );
+
+    dispatch({
+      type: ORDER_DELIVER_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ORDER_DELIVER_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

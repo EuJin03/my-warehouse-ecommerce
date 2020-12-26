@@ -9,6 +9,10 @@ node_modules/
 # testing
 /coverage
 
+# product
+/frontend/build
+# when deployed to server, create another npm run build so we dont need to do git push
+
 # production
 /build
 
