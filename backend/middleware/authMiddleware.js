@@ -14,7 +14,9 @@ const protect = asyncHandler(async (req, res, next) => {
 
       const { id } = jwt.verify(token, process.env.JWT_SECRET); //decoded
 
-      req.user = await User.findById(id).select("-password");
+      req.user = await User.findById(id).select("-password"); //important
+
+      next();
     } catch (error) {
       console.error(error);
       res.status(401);
@@ -26,10 +28,17 @@ const protect = asyncHandler(async (req, res, next) => {
     res.status(401);
     throw new Error("Not authorised, no token");
   }
-
-  next();
 });
 
-export { protect };
+const admin = (req, res, next) => {
+  if (req.user && req.user.isAdmin) {
+    next();
+  } else {
+    res.status(401);
+    throw new Error("Not authorized as an admin");
+  }
+};
 
-//console.log(req.headers.authorization);
+export { protect, admin };
+
+//console.log(req.headers.authorization); // Authorization: Bearer ...

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getOrderDetails, payOrder } from "../actions/orderActions";
+import { removeCartItems } from "../actions/cartActions";
 import { ORDER_PAY_RESET } from "../constants/orderConstants";
 
 const OrderScreen = ({ match }) => {
@@ -47,6 +48,8 @@ const OrderScreen = ({ match }) => {
         setSdkReady(true);
       }
     }
+
+    dispatch(removeCartItems());
   }, [orderId, dispatch, successPay, order]);
 
   const successPaymentHandler = paymentResult => {
